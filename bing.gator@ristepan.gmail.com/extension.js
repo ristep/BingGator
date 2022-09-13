@@ -58,35 +58,49 @@ const Indicator = GObject.registerClass(
                 style_class: 'system-status-icon',
             }));
  
-            let item1 = new PopupMenu.PopupMenuItem(_('Wallpaper of the Day'));
-            let item2 = new PopupMenu.PopupMenuItem(_('Yestardays wallpaper'));
-            let item3 = new PopupMenu.PopupMenuItem(_('Two days of the Day'));
-            let item4 = new PopupMenu.PopupMenuItem(_('Three days of the Day'));
-            item1.connect('activate', () => {
+            let item0 = new PopupMenu.PopupMenuItem(_('Wallpaper of the Day'));
+            let item1 = new PopupMenu.PopupMenuItem(_('Yestardays wallpaper'));
+            let item2 = new PopupMenu.PopupMenuItem(_('Day before yestarday'));
+            let item3 = new PopupMenu.PopupMenuItem(_('Three days before'));
+            let item4 = new PopupMenu.PopupMenuItem(_('Four days before'));
+            let item5 = new PopupMenu.PopupMenuItem(_('Five days before'));
+
+            item0.connect('activate', () => {
                 Main.notify(_('Wallpaper of the Day!'));
                 getUrl(0);
             });
 
-            item2.connect('activate', () => {
+            item1.connect('activate', () => {
                 Main.notify(_('Yestardays wallpaper!')); 
                 getUrl(1);
             });
 
-            item3.connect('activate', () => {
+            item2.connect('activate', () => {
                 Main.notify(_('Two days ago!'));
-                const rnd = 2;
-                getUrl(rnd);
-            });
-            item4.connect('activate', () => {
-                Main.notify(_('Three days ago!'));
-                const rnd = 3;
-                getUrl(rnd);
+                getUrl(2);
             });
 
+            item3.connect('activate', () => {
+                Main.notify(_('Three days ago!'));
+                getUrl(3);
+            });
+
+            item4.connect('activate', () => {
+                Main.notify(_('Four days ago!'));
+                getUrl(4);
+            });
+
+            item5.connect('activate', () => {
+                Main.notify(_('Five  days ago!'));
+                getUrl(5);
+            });
+
+            this.menu.addMenuItem(item0);
             this.menu.addMenuItem(item1);
             this.menu.addMenuItem(item2);
             this.menu.addMenuItem(item3);
             this.menu.addMenuItem(item4);
+            this.menu.addMenuItem(item5);
         }
     });
 
