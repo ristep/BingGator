@@ -2,7 +2,7 @@
   "name": "Bing-gator",
   "uuid": "bing.gator@ristepan.gmail.com",
   "shell-version": [ "43", "42", "41", "40" ],
-  "description": "This extension puts an icon in the panel with a simple dropdown menu.",
+  "description": "Gnome Shell extension for gathering the latest Bing wallpapers.",
   "version": 1,
   "url": "https://pan.sman.cloud/"
 }

@@ -57,7 +57,7 @@ const Indicator = GObject.registerClass(
                 icon_name: 'face-smile-symbolic',
                 style_class: 'system-status-icon',
             }));
-
+ 
             let item1 = new PopupMenu.PopupMenuItem(_('Wallpaper of the Day'));
             let item2 = new PopupMenu.PopupMenuItem(_('Yestardays wallpaper'));
             let item3 = new PopupMenu.PopupMenuItem(_('Two days of the Day'));
@@ -68,7 +68,7 @@ const Indicator = GObject.registerClass(
             });
 
             item2.connect('activate', () => {
-                Main.notify(_('Yestardays wallpaper!'));
+                Main.notify(_('Yestardays wallpaper!')); 
                 getUrl(1);
             });
 
