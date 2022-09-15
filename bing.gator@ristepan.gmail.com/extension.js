@@ -64,6 +64,8 @@ const Indicator = GObject.registerClass(
             let item3 = new PopupMenu.PopupMenuItem(_('Three days before'));
             let item4 = new PopupMenu.PopupMenuItem(_('Four days before'));
             let item5 = new PopupMenu.PopupMenuItem(_('Five days before'));
+            let separator = new PopupMenu.PopupSeparatorMenuItem();
+            let itemAbout = new PopupMenu.PopupMenuItem(_('About photo'));
 
             item0.connect('activate', () => {
                 Main.notify(_('Wallpaper of the Day!'));
@@ -95,12 +97,19 @@ const Indicator = GObject.registerClass(
                 getUrl(5);
             });
 
+            itemAbout.connect('activate', () => {
+                Main.notify(_('About'));
+                
+            });  
+
             this.menu.addMenuItem(item0);
             this.menu.addMenuItem(item1);
             this.menu.addMenuItem(item2);
             this.menu.addMenuItem(item3);
             this.menu.addMenuItem(item4);
             this.menu.addMenuItem(item5);
+            this.menu.addMenuItem(separator);
+            this.menu.addMenuItem(itemAbout)
         }
     });
 
