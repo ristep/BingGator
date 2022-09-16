@@ -35,13 +35,17 @@ const _ = ExtensionUtils.gettext;
 const tmpfile = "/tmp/binga.json"
 
 const getUrl = async (ndx) => {
-    //GLib.spawn_command_line_sync('/usr/bin/curl https://bing.biturl.top/?index='+ ndx + ' -s -o '+ tmpfile);
     GLib.spawn_command_line_sync('/usr/bin/curl https://www.bing.com/HPImageArchive.aspx?format=js&idx='+ndx+'&n=1&mkt=en-US -s -o '+ tmpfile);
     let text = GLib.file_get_contents(tmpfile)[1];
     let json_result = JSON.parse(text);
     setWallpaper("https://www.bing.com/"+json_result.images[0].url);
-    // setWallpaper(json_result.url);
 };
+
+const showInfo = () => {
+    let text = GLib.file_get_contents(tmpfile)[1];
+    let json_result = JSON.parse(text);
+    GLib.spawn(['/usr/bin/gnome-open', json_result.copyrightlink ]);
+ }; 
 
 const setWallpaper = (uri) => {
     Util.spawn(["/usr/bin/gsettings", "set", "org.gnome.desktop.background", "picture-uri", uri]);
@@ -57,7 +61,7 @@ const Indicator = GObject.registerClass(
                 icon_name: 'face-smile-symbolic',
                 style_class: 'system-status-icon',
             }));
- 
+            
             let item0 = new PopupMenu.PopupMenuItem(_('Wallpaper of the Day'));
             let item1 = new PopupMenu.PopupMenuItem(_('Yestardays wallpaper'));
             let item2 = new PopupMenu.PopupMenuItem(_('Day before yestarday'));
@@ -99,7 +103,7 @@ const Indicator = GObject.registerClass(
 
             itemAbout.connect('activate', () => {
                 Main.notify(_('About'));
-                
+                showInfo();
             });  
 
             this.menu.addMenuItem(item0);
