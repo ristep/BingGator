@@ -44,7 +44,8 @@ const getUrl = async (ndx) => {
 const showInfo = () => {
     let text = GLib.file_get_contents(tmpfile)[1];
     let json_result = JSON.parse(text);
-    GLib.spawn(['/usr/bin/gnome-open', json_result.copyrightlink ]);
+    Util.spawn(["gnome-open", json_result.images[0].copyrightlink]);
+    // return json_result.images[0].copyrightlink;
  }; 
 
 const setWallpaper = (uri) => {
@@ -102,7 +103,7 @@ const Indicator = GObject.registerClass(
             });
 
             itemAbout.connect('activate', () => {
-                Main.notify(_('About'));
+                Main.notify(_(showInfo()));
                 showInfo();
             });  
 
