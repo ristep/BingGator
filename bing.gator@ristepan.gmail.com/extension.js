@@ -27,6 +27,8 @@ const Util = imports.misc.util;
 const Main = imports.ui.main;
 const GLib = imports.gi.GLib;
 
+const Me = imports.misc.extensionUtils.getCurrentExtension();
+
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 
@@ -59,10 +61,10 @@ const Indicator = GObject.registerClass(
             super._init(0.0, _('Bing Get Wallpaper'));
 
             this.add_child(new St.Icon({
-                icon_name: 'face-smile-symbolic',
-                style_class: 'system-status-icon',
+                icon_name: 'system-run-symbolic',
+                style_class: 'ikona-be-daa'//'system-status-icon',
             }));
-            
+
             let item0 = new PopupMenu.PopupMenuItem(_('Wallpaper of the Day'));
             let item1 = new PopupMenu.PopupMenuItem(_('Yestardays wallpaper'));
             let item2 = new PopupMenu.PopupMenuItem(_('Day before yestarday'));

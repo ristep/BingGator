@@ -1,2 +1,9 @@
 /* Add your custom extension styling here */
 /* stylesheet.css */
+
+.ikona-be-daa {
+  background-image: url("icons/icon3.png");
+  background-size: 22px;
+  background-color:rgba(0,0,0,0);
+  color: rgba(0,0,0,0);
+}
