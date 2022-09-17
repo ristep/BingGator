@@ -1,8 +1,9 @@
+
 {
-  "name": "Bing-gator",
   "uuid": "bing.gator@ristepan.gmail.com",
+  "name": "BingGator",
+  "version": 1,
   "shell-version": [ "43", "42", "41", "40" ],
   "description": "Gnome Shell extension for gathering the latest Bing wallpapers.",
-  "version": 1,
   "url": "https://pan.sman.cloud/binggator/"
 }
