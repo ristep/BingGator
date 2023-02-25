@@ -44,19 +44,30 @@ const getUrl = async (ndx) => {
     setWallpaper("https://www.bing.com/"+json_result.images[0].url);
 };
 
+// const showInfo = () => {
+//     let text = GLib.file_get_contents(tmpfile)[1];
+//     let json_result = JSON.parse(text);
+//     Util.spawn(["xdg-open", json_result.images[0].copyrightlink]);
+// //    return json_result.images[0].copyrightlink;
+// }; 
+
 const showInfo = () => {
     let text = GLib.file_get_contents(tmpfile)[1];
     let json_result = JSON.parse(text);
-    Util.spawn(["xdg-open", json_result.images[0].copyrightlink]);
-//    return json_result.images[0].copyrightlink;
-}; 
+    let info_url = json_result.images[0].copyrightlink;
+    try {
+        GLib.spawn_command_line_async('xdg-open "' + info_url + '"');
+    } catch (e) {
+        logError(e);
+    }
+}
 
- const WallpaperSettings = new Gio.Settings({ schema_id: 'org.gnome.desktop.background' });
+const WallpaperSettings = new Gio.Settings({ schema_id: 'org.gnome.desktop.background' });
  
- const setWallpaper = (uri) => {
+const setWallpaper = (uri) => {
      WallpaperSettings.set_string('picture-uri', uri);
      WallpaperSettings.set_string('picture-uri-dark', uri);
- };
+};
 
 const Indicator = GObject.registerClass(
     class Indicator extends PanelMenu.Button {
