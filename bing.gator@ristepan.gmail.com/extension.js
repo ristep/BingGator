@@ -26,7 +26,8 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Util = imports.misc.util;
 const Main = imports.ui.main;
 const GLib = imports.gi.GLib;
-
+const Gio = imports.gi.Gio;
+ 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 
 const PanelMenu = imports.ui.panelMenu;
@@ -47,13 +48,15 @@ const showInfo = () => {
     let text = GLib.file_get_contents(tmpfile)[1];
     let json_result = JSON.parse(text);
     Util.spawn(["gnome-open", json_result.images[0].copyrightlink]);
-    // return json_result.images[0].copyrightlink;
- }; 
+//    return json_result.images[0].copyrightlink;
+}; 
 
-const setWallpaper = (uri) => {
-    Util.spawn(["/usr/bin/gsettings", "set", "org.gnome.desktop.background", "picture-uri", uri]);
-    Util.spawn(["/usr/bin/gsettings", "set", "org.gnome.desktop.background", "picture-uri-dark", uri]);
-};
+ const WallpaperSettings = new Gio.Settings({ schema_id: 'org.gnome.desktop.background' });
+ 
+ const setWallpaper = (uri) => {
+     WallpaperSettings.set_string('picture-uri', uri);
+     WallpaperSettings.set_string('picture-uri-dark', uri);
+ };
 
 const Indicator = GObject.registerClass(
     class Indicator extends PanelMenu.Button {
