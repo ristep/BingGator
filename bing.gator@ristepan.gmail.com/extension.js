@@ -47,7 +47,7 @@ const getUrl = async (ndx) => {
 const showInfo = () => {
     let text = GLib.file_get_contents(tmpfile)[1];
     let json_result = JSON.parse(text);
-    Util.spawn(["gnome-open", json_result.images[0].copyrightlink]);
+    Util.spawn(["xdg-open", json_result.images[0].copyrightlink]);
 //    return json_result.images[0].copyrightlink;
 }; 
 
